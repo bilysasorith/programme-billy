@@ -130,7 +130,7 @@
 <section id="training" class="view active">
   <div class="wrap">
     <div class="banner">
-      <b>Cycle sur 8 jours.</b> Objectif : <b>moins de volume, charge plus lourde</b>.
+      <b>Rotation du coach.</b> Objectif : <b>moins de volume, charge plus lourde</b>.
       Touche une séance pour dérouler les exercices. <br>
       <span style="color:var(--txt)">c</span> = contraction · <span style="color:var(--txt)">neg</span> = négative (excentrique) · <span style="color:var(--txt)">iso</span> = isométrie.
     </div>
@@ -207,9 +207,9 @@ const DAYS = [
     ]},
   ]},
 
-  {rest:true, label:"Jour 3", name:"Repos"},
+  {rest:true, label:"Repos", name:"Récupération"},
 
-  {label:"Séance 4", name:"Dos · Trapèzes · Biceps", groups:[
+  {label:"Séance 3", name:"Dos · Trapèzes · Biceps", groups:[
     {m:"Dos", ex:[
       {name:"Pull-over poulie haute", sets:[
         {b:"1×15", n:"contraction c. lente"},{b:"1×12", n:"idem"},{b:"1×10", n:"idem"}]},
@@ -228,7 +228,7 @@ const DAYS = [
     ]},
   ]},
 
-  {label:"Séance 5", name:"Abducteurs · Fessiers · Ischios", groups:[
+  {label:"Séance 4", name:"Abducteurs · Fessiers · Ischios", groups:[
     {m:"Abducteurs", ex:[
       {name:"Machine abducteurs", sets:[
         {b:"1×15", n:"1s iso"},{b:"1×12", n:"idem"},{b:"1×10", n:"idem"}]},
@@ -249,9 +249,9 @@ const DAYS = [
     ]},
   ]},
 
-  {rest:true, label:"Jour 6", name:"Repos"},
+  {rest:true, label:"Repos", name:"Récupération"},
 
-  {label:"Séance 7", name:"Pecs · Delts · Trapèzes · Triceps", groups:[
+  {label:"Séance 5", name:"Pecs · Delts · Trapèzes · Triceps", groups:[
     {m:"Pecs", ex:[
       {name:"Écarté poulie (pré-chauffe)", sets:[
         {b:"1×15", n:"2s négative"},{b:"1×12", n:"idem"},{b:"1×8", n:"idem"}]},
@@ -280,7 +280,32 @@ const DAYS = [
     ]},
   ]},
 
-  {label:"Séance 8", name:"Adducteurs · Quads · Rappel ischios", incomplete:true, groups:[]},
+  {label:"Séance 6", name:"Adducteurs · Quads · Rappel ischios", incomplete:true, groups:[]},
+
+  {label:"Séance 7", name:"Bras · Mollets", groups:[
+    {m:"Triceps", ex:[
+      {name:"Extension poulie haute", sets:[
+        {b:"1×15", n:"contraction c."},{b:"1×12", n:"idem"},{b:"1×8", n:"charge lourde, contrôlée"}]},
+      {name:"Développé serré", sets:[
+        {b:"1×8", n:"contraction c."},{b:"1×8", n:"charge lourde"},{b:"1×6", n:"même charge, après 20s de repos"}]},
+      {name:"Extension haltère 2 mains ou barre EZ au front", sets:[
+        {b:"1×10", n:"contraction c."},{b:"1×8", n:"contraction c. lente, charge progressive"}]},
+    ]},
+    {m:"Biceps", ex:[
+      {name:"Curl barre droite ou EZ", sets:[
+        {b:"1×15", n:"barre à vide / légère (échauffement)"},{b:"1×10", n:"contraction c. lente"},{b:"1×8", n:"charge lourde, contrôlée"},{b:"1×8", n:"décharge, même travail"}]},
+      {name:"Curl haltère supination", sets:[
+        {b:"1×10", n:"contraction c. lente"},{b:"1×8", n:"idem, charge progressive"}]},
+      {name:"Larry Scott machine unilatéral", sets:[
+        {b:"1×10", n:"2s négative"},{b:"1×8", n:"idem, charge progressive"}]},
+    ]},
+    {m:"Mollets", ex:[
+      {name:"Mollets debout", sets:[
+        {b:"1×15", n:"contraction c."},{b:"1×12", n:"idem"},{b:"1×8", n:"idem"},{b:"1×8", n:"même charge, après 20s de repos"}]},
+      {name:"Mollets assis", sets:[
+        {b:"3×8", n:"contraction c. lente"}]},
+    ]},
+  ]},
 ];
 
 /* ---------------- DATA : DIÈTE ---------------- */
