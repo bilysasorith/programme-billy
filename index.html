@@ -216,7 +216,12 @@
   .presets button{background:var(--card-2);border:1px solid var(--line-2);border-radius:11px;
     padding:11px 0;font-size:14px;font-weight:800;color:var(--txt);flex:1;min-width:60px;transition:all var(--dur)}
   .presets button:active{transform:scale(.94);border-color:var(--accent)}
-  .t-ctrl{display:flex;gap:10px;margin-top:16px}
+  .presets button.sel{border-color:var(--accent-2);color:var(--accent-2);background:rgba(255,176,32,.08)}
+  .t-adjust{display:flex;gap:10px;justify-content:center;margin-top:12px}
+  .t-adjust button{flex:1;background:var(--card-2);border:1px solid var(--line-2);border-radius:12px;
+    padding:14px 0;font-size:15.5px;font-weight:850;color:var(--txt);transition:transform var(--dur)}
+  .t-adjust button:active{transform:scale(.95);border-color:var(--accent-2)}
+  .t-ctrl{display:flex;gap:10px;margin-top:12px}
   .t-ctrl button{flex:1;padding:15px 0;border-radius:14px;font-size:15px;font-weight:850;transition:transform var(--dur)}
   .t-ctrl button:active{transform:scale(.96)}
   .t-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#25160a}
@@ -294,9 +299,13 @@
         stroke-dasharray="540.35" stroke-dashoffset="0"/>
       <defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a36"/><stop offset="1" stop-color="#ffb020"/></linearGradient></defs>
     </svg>
-    <div class="val"><div class="big" id="t-big">20</div><div class="lbl">secondes</div></div>
+    <div class="val"><div class="big" id="t-big">1:30</div><div class="lbl">restant</div></div>
   </div>
   <div class="presets" id="presets"></div>
+  <div class="t-adjust">
+    <button id="t-minus" aria-label="Réduire de 15 secondes">− 15 s</button>
+    <button id="t-plus" aria-label="Ajouter 15 secondes">+ 15 s</button>
+  </div>
   <div class="t-ctrl">
     <button class="t-ghost" id="t-reset">Réinit.</button>
     <button class="t-primary" id="t-toggle">Démarrer</button>
@@ -672,14 +681,22 @@ function setTab(tab){
 document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
 
 /* ============ Rest timer ============ */
-const T={dur:20,left:20,running:false,raf:null,end:0};
+const T={dur:90,left:90,running:false,raf:null,end:0};
 const ring=$("#ring-fg"), RCIRC=540.35;
 function fmt(s){s=Math.max(0,Math.ceil(s));return s>=60?Math.floor(s/60)+":"+String(s%60).padStart(2,"0"):String(s);}
 function paintTimer(){
   $("#t-big").textContent=fmt(T.left);
-  ring.style.strokeDashoffset=(RCIRC*(1-(T.dur?T.left/T.dur:0))).toFixed(1);
+  const ratio=T.dur?Math.min(1,Math.max(0,T.left/T.dur)):0;
+  ring.style.strokeDashoffset=(RCIRC*(1-ratio)).toFixed(1);
   const fab=$("#fab");
   if(T.running){fab.classList.add("running");$("#fab-mini").textContent=fmt(T.left);}else fab.classList.remove("running");
+  document.querySelectorAll("#presets button").forEach(b=>b.classList.toggle("sel", +b.dataset.s===T.dur));
+}
+function adjust(delta){
+  const nd=Math.max(15,T.dur+delta), applied=nd-T.dur; T.dur=nd;
+  if(T.running){ T.end+=applied*1000; T.left=(T.end-performance.now())/1000; if(T.left<0)T.left=0; }
+  else { T.left=Math.max(0,T.left+applied); if(T.left<=0||T.left>T.dur)T.left=T.dur; $("#t-toggle").textContent="Démarrer"; }
+  $("#sheet").classList.remove("done"); haptic(10); paintTimer();
 }
 function tick(){
   const now=performance.now(); T.left=(T.end-now)/1000;
@@ -687,6 +704,7 @@ function tick(){
   paintTimer(); T.raf=requestAnimationFrame(tick);
 }
 function startTimer(){
+  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)(); if(ac.state==="suspended")ac.resume();}catch(e){}
   if(T.left<=0)T.left=T.dur;
   T.end=performance.now()+T.left*1000; T.running=true;
   $("#t-toggle").textContent="Pause"; $("#sheet").classList.remove("done");
@@ -702,24 +720,26 @@ function finishTimer(){
 }
 let ac;
 function beep(){
-  try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)();
-    [0,0.18].forEach(t=>{const o=ac.createGain(),s=ac.createOscillator();
-      s.type="sine";s.frequency.value=880;o.gain.value=0;s.connect(o);o.connect(ac.destination);
-      const st=ac.currentTime+t;o.gain.setValueAtTime(0,st);o.gain.linearRampToValueAtTime(.5,st+.02);
-      o.gain.linearRampToValueAtTime(0,st+.14);s.start(st);s.stop(st+.15);});
+  try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)(); if(ac.state==="suspended")ac.resume();
+    [[0,880],[0.22,880],[0.44,1180]].forEach(([t,f])=>{const o=ac.createGain(),s=ac.createOscillator();
+      s.type="sine";s.frequency.value=f;o.gain.value=0;s.connect(o);o.connect(ac.destination);
+      const st=ac.currentTime+t;o.gain.setValueAtTime(0,st);o.gain.linearRampToValueAtTime(.6,st+.02);
+      o.gain.linearRampToValueAtTime(0,st+.18);s.start(st);s.stop(st+.2);});
   }catch(e){}
 }
 function openSheet(){$("#sheet-bg").classList.add("show");$("#sheet").classList.add("show");}
 function closeSheet(){$("#sheet-bg").classList.remove("show");$("#sheet").classList.remove("show");}
-function openTimer(s,start){ if(ac&&ac.state==="suspended")ac.resume(); setDur(s||T.dur,start); openSheet(); if(start)toast("Repos "+s+"s ⏱️"); }
+function openTimer(s,start){ if(ac&&ac.state==="suspended")ac.resume(); setDur(s||T.dur,start); openSheet(); if(start)toast("Repos "+fmt(s)+" ⏱️"); }
 
 $("#fab").addEventListener("click",()=>{ try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();}catch(e){} openTimer(T.dur,false); });
 $("#sheet-bg").addEventListener("click",closeSheet);
 $("#t-toggle").addEventListener("click",()=>{ if(T.running)pauseTimer();else startTimer(); });
 $("#t-reset").addEventListener("click",resetTimer);
+$("#t-minus").addEventListener("click",()=>adjust(-15));
+$("#t-plus").addEventListener("click",()=>adjust(15));
 (function presets(){
   const wrap=$("#presets");
-  [20,30,45,60,90].forEach(s=>{const b=el("button");b.textContent=s+"s";b.addEventListener("click",()=>setDur(s,true));wrap.appendChild(b);});
+  [30,45,60,90,120].forEach(s=>{const b=el("button");b.dataset.s=s;b.textContent=fmt(s);b.addEventListener("click",()=>setDur(s,true));wrap.appendChild(b);});
 })();
 
 /* ============ Init ============ */
