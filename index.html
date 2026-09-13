@@ -221,7 +221,7 @@
 <section id="training" class="view active">
   <div class="wrap">
     <div class="banner">
-      <b>Rotation du coach.</b> Objectif : <b>moins de volume, charge plus lourde</b>.
+      <b>Rotation sur 12 jours</b> — 8 séances + 4 repos, puis retour à la séance 1. Objectif : <b>moins de volume, charge plus lourde</b>.
       Coche tes exercices, note tes charges, lance le minuteur sur les temps de repos.<br>
       <span class="abbr">c</span> = contraction · <span class="abbr">neg</span> = négative · <span class="abbr">iso</span> = isométrie.
     </div>
@@ -353,8 +353,31 @@ const DAYS = [
     {m:"Trapèzes", ex:[{name:"Shrug haltère", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem, charge progressive"}]}]},
     {m:"Triceps", ex:[{name:"Extension haltère 2 mains ou barre EZ au front", sets:[{b:"1×10",n:"contraction c."},{b:"2×8",n:"idem, charge progressive"}]}]},
   ]},
-  {label:"Séance 6", name:"Adducteurs · Quads · Rappel ischios", incomplete:true, groups:[]},
-  {label:"Séance 7", name:"Bras · Mollets", groups:[
+  {label:"Séance 6", name:"Adducteurs · Quads · Rappel ischios", groups:[
+    {m:"Adducteurs", ex:[{name:"Machine adducteurs (pré-chauffe)", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"}]}]},
+    {m:"Quadriceps", ex:[
+      {name:"Presse", sets:[{b:"1×10",n:"2s négative"},{b:"1×8",n:"lourd"}], tip:"Étirement complet du quadriceps"},
+      {name:"Hack squat ou squat guidé", sets:[{b:"1×8",n:"contrôle de la charge (1,5s négative)"},{b:"1×6",n:"lourd"},{b:"1×6",n:"décharge, 2s négative"}]},
+      {name:"Leg extension", sets:[{b:"2×8",n:"contraction c. lente, amplitude complète"}], tip:"Pas de charges extrêmes ; recule bien le dossier, dos presque allongé pour étirer le haut du quad. Négative aussi contrôlée que la positive."},
+    ]},
+    {m:"Ischios", ex:[
+      {name:"Leg curl assis", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 20s de repos"}]},
+      {name:"Leg curl allongé", sets:[{b:"1×10",n:"contraction c."},{b:"1×8",n:"lourd, contrôlé"},{b:"1×6",n:"même charge, après 20s de repos"}]},
+    ]},
+  ]},
+  {rest:true, label:"Repos", name:"Récupération"},
+  {label:"Séance 7", name:"Dos · Trapèzes", groups:[
+    {m:"Dos", ex:[
+      {name:"Pull-over poulie haute (prise serrée)", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"lourd, contrôlé"}]},
+      {name:"Tirage vertical (prise large)", sets:[{b:"1×10",n:"contraction c."},{b:"1×8",n:"lourd, contraction c."},{b:"1×8",n:"même charge, après 20s de repos"}]},
+      {name:"Rowing barre Yates", sets:[{b:"1×8",n:"contraction c., buste bien penché"},{b:"1×8",n:"lourd, contrôlé"}], tip:"Redresse-toi légèrement pour moins solliciter les lombaires"},
+      {name:"Tirage bûcheron convergente", sets:[{b:"1×8",n:"2s négative, charge contrôlée"},{b:"1×6",n:"lourd"},{b:"1×6",n:"même charge, après 20s de repos"}]},
+    ]},
+    {m:"Lombaires", ex:[
+      {name:"Banc à lombaires (barre droite si possible)", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×6",n:"même charge, après 20s de repos"}]},
+    ]},
+  ]},
+  {label:"Séance 8", name:"Bras · Mollets", groups:[
     {m:"Triceps", ex:[
       {name:"Extension poulie haute", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"}]},
       {name:"Développé serré", sets:[{b:"1×8",n:"contraction c."},{b:"1×8",n:"charge lourde"},{b:"1×6",n:"même charge, après 20s de repos"}]},
@@ -370,6 +393,7 @@ const DAYS = [
       {name:"Mollets assis", sets:[{b:"3×8",n:"contraction c. lente"}]},
     ]},
   ]},
+  {rest:true, label:"Repos", name:"Récupération — retour séance 1"},
 ];
 
 /* ============ DATA : DIÈTE ============ */
@@ -389,7 +413,7 @@ const store = {
   get(k,f){ try{ const v=localStorage.getItem(k); return v==null?f:JSON.parse(v);}catch(e){return f;} },
   set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 };
-const K={tab:"pb.tab",open:"pb.open.v2",done:"pb.done.v2",wt:"pb.wt.v2",meals:"pb.meals.v2"};
+const K={tab:"pb.tab",open:"pb.open.v3",done:"pb.done.v3",wt:"pb.wt.v3",meals:"pb.meals.v3"};
 
 let doneMap = store.get(K.done,{});      // "d-g-e": true
 let wtMap   = store.get(K.wt,{});        // "d-g-e": "60"
