@@ -176,6 +176,9 @@
   ul.supp li{font-size:12px;background:var(--bg-soft);border:1px solid var(--line);border-radius:99px;padding:5px 11px;color:var(--txt-dim)}
 
   .rest-day-msg{padding:20px 16px 24px;text-align:center;color:var(--txt-dim);font-size:13.5px}
+  .opt-label{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent-2);font-weight:850;margin:2px 0 4px}
+  .or-div{display:flex;align-items:center;gap:10px;margin:13px 0 8px;color:var(--txt-mute);font-size:10.5px;font-weight:850;letter-spacing:2px;text-transform:uppercase}
+  .or-div::before,.or-div::after{content:"";flex:1;height:1px;background:var(--line)}
 
   /* ---------- Tab bar ---------- */
   nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;
@@ -432,7 +435,8 @@ const DAYS = [
 const MEALS = [
   {ic:"☀️", t:"Réveil", n:"À jeun", items:[{q:"5 g",d:"EAA"},{q:"",d:"Jus de citron pressé"}]},
   {ic:"🥣", t:"Repas 1", n:"Petit-déjeuner", items:[{q:"50 g",d:"crème de riz"},{q:"3",d:"blancs d'œufs"},{q:"1",d:"œuf entier"},{q:"10 g",d:"miel d'acacia"},{q:"50 g",d:"fruits rouges"}], supp:["1 oméga 3","1 multivitamine","1 vit. K2 D3","3 g glutamine","1 magnésium bisglycinate","1 astaxanthine"]},
-  {ic:"🥛", t:"Repas 2", n:"Collation", items:[{q:"30 g",d:"isolate"},{q:"1",d:"banane"},{q:"10 g",d:"amandes"}]},
+  {ic:"🥛", t:"Repas 2", n:"Collation", items:[{q:"30 g",d:"isolate"},{q:"1",d:"banane"},{q:"10 g",d:"amandes"}],
+    alt:{name:"Option B — shaker", items:[{q:"20 g",d:"whey"},{q:"35 g",d:"crème de riz"},{q:"10 g",d:"amandes"}]}},
   {ic:"🍗", t:"Repas 3", n:"Midi", items:[{q:"150 g",d:"riz basmati cuit"},{q:"140 g",d:"blanc de poulet cru"},{q:"50 g",d:"légumes verts"},{q:"10 g",d:"huile d'olive"}], supp:["1 oméga 3"]},
   {ic:"🥔", t:"Repas 4", n:"Collation après-midi", items:[{q:"4",d:"blancs d'œufs"},{q:"1",d:"banane"},{q:"150 g",d:"pomme de terre (purée possible)"},{q:"10 g",d:"huile d'olive"}], supp:["1 oméga 3"]},
   {ic:"⚡", t:"Autour de la séance", n:"Pré / Intra / Post", items:[{q:"Pré",d:"15 g dextrine cyclique + 1 g de sel (30 min avant)"},{q:"Intra",d:"10 g EAA"},{q:"Post",d:"40 g isolate + 40 g crème de riz"}]},
@@ -657,8 +661,12 @@ function renderMeals(){
     });
     mEl.appendChild(head);
     const body=el("div","meal-body");
-    body.innerHTML=`<ul class="items">${m.items.map(it=>`<li><span class="q">${it.q}</span><span class="d">${it.d}</span></li>`).join("")}</ul>`+
-      (m.supp?`<div class="supp-title">💊 Compléments</div><ul class="supp">${m.supp.map(s=>`<li>${s}</li>`).join("")}</ul>`:"");
+    const list=its=>`<ul class="items">${its.map(it=>`<li><span class="q">${it.q}</span><span class="d">${it.d}</span></li>`).join("")}</ul>`;
+    let html = m.alt
+      ? `<div class="opt-label">Option A</div>${list(m.items)}<div class="or-div">ou</div><div class="opt-label">${m.alt.name}</div>${list(m.alt.items)}`
+      : list(m.items);
+    if(m.supp) html += `<div class="supp-title">💊 Compléments</div><ul class="supp">${m.supp.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+    body.innerHTML=html;
     mEl.appendChild(body);
     root.appendChild(mEl);
   });
