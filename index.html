@@ -267,7 +267,7 @@
 <section id="training" class="view active">
   <div class="wrap">
     <div class="banner">
-      <b>Rotation sur 12 jours</b> — 8 séances + 4 repos, puis retour à la séance 1. Objectif : <b>moins de volume, charge plus lourde</b>.
+      <b>Rotation du coach</b> — enchaîne les séances (repos inclus), puis reprends au début. Objectif : <b>moins de volume, charge plus lourde</b>.
       Note tes charges <b>série par série</b>, coche tes exercices, puis <b>Terminer la séance</b> pour l'archiver et retrouver tes charges la fois suivante.<br>
       <span class="abbr">c</span> = contraction · <span class="abbr">neg</span> = négative · <span class="abbr">iso</span> = isométrie.
     </div>
@@ -459,9 +459,150 @@ const MEALS_2026_09 = [
   {ic:"🌙", t:"Repas 6", n:"Collation du coucher", items:[{q:"25 g",d:"caséine"},{q:"15 g",d:"oléagineux ou beurre de cacahuète"}], supp:["1 gélule ZMA"]},
 ];
 
+/* ============ DATA : ENTRAÎNEMENT — JUIN 2026 ============ */
+const DAYS_2026_06 = [
+  {label:"Jour 1", name:"Pecs · Delts · Trapèzes", groups:[
+    {m:"Pecs", ex:[
+      {name:"Écarté poulie ou pec fly (pré-chauffe)", sets:[{b:"1×15",n:"2s négative"},{b:"1×12",n:"idem"},{b:"1×10",n:"3s négative"}]},
+      {name:"Développé incliné 15°", sets:[{b:"1×10",n:"contraction c."},{b:"1×8",n:"idem, charge lourde"},{b:"1×6",n:"idem"},{b:"1×6",n:"décharge, contraction c. lente"}]},
+      {name:"Convergente incliné 30° (voire 45°)", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×6",n:"même charge, après 15s de repos"}]},
+    ]},
+    {m:"Deltoïdes", ex:[
+      {name:"Élévation latérale haltère", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"2×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]},
+      {name:"Oiseau haltère", sets:[{b:"1×15",n:"contraction c."},{b:"2×12",n:"idem, charge progressive"}]},
+    ]},
+    {m:"Trapèzes", ex:[
+      {name:"Shrug haltère sur banc 45°", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]},
+      {name:"Shrug barre droite", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:""},{b:"1×8",n:"idem"}]},
+    ]},
+  ]},
+  {label:"Jour 2", name:"Quads · Adducteurs · Mollets", groups:[
+    {m:"Adducteurs", ex:[{name:"Machine adducteurs", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]}]},
+    {m:"Quadriceps", ex:[
+      {name:"Leg extension", sets:[{b:"1×20",n:"contraction c. (échauffement)"},{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×8",n:"1s iso"},{b:"1×8",n:"même charge, après 15s de repos"}]},
+      {name:"Presse pieds parallèles (étirement max)", sets:[{b:"1×12",n:"1s iso"},{b:"1×10",n:"idem"},{b:"Dégr.",n:"8 + 8 + 10 reps (1s iso · 1s iso · 3s négative), amplitude complète"}], tip:"Largeur des hanches, pointes de pieds vers l'extérieur"},
+      {name:"Hack squat", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×8",n:"même charge, après 15s de repos"},{b:"1×6",n:"décharge, 3s négative"}], tip:"Petite explosivité sur la positive après stabilisation de la négative, pour bien déchirer les fibres"},
+    ]},
+    {m:"Mollets", ex:[{name:"Mollets debout", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×6",n:"même charge, après 15s de repos"}]}]},
+  ]},
+  {rest:true, label:"Jour 3", name:"Repos"},
+  {label:"Jour 4", name:"Dos complet · Lombaires", groups:[
+    {m:"Dos", ex:[
+      {name:"Pull-over poulie haute", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"T-barre prise neutre", sets:[{b:"1×10",n:"contraction c."},{b:"1×8",n:"idem"},{b:"1×6",n:"charge lourde"},{b:"1×8",n:"décharge, contraction c. lente"}], tip:"Tire sur toute l'amplitude"},
+      {name:"Tirage horizontal prise neutre", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge progressive"}]},
+      {name:"Soulevé de terre partiel", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×6",n:"même charge, après 15s de repos"}]},
+    ]},
+    {m:"Largeur", ex:[
+      {name:"Tirage vertical large prise neutre", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"}]},
+      {name:"Tirage vertical prise serrée", sets:[{b:"2×10",n:"contraction c. lente"},{b:"1×8",n:"idem"}], tip:"Amplitude max sur l'étirement, bien collé à la poitrine sur la contraction"},
+    ]},
+    {m:"Lombaires", ex:[{name:"Banc à lombaires", sets:[{b:"1×12",n:"1s iso"},{b:"1×10",n:"1s iso"},{b:"1×8",n:"1s iso"},{b:"1×8",n:"même charge, après 15s de repos"}]}]},
+  ]},
+  {label:"Jour 5", name:"Triceps · Biceps · Abdos", groups:[
+    {m:"Triceps", ex:[
+      {name:"Extension poulie barre droite", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Développé serré au sol (rack à squat)", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde"},{b:"1×6",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"Extension haltère à deux mains", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"}], tip:"Amplitude d'étirement complète"},
+    ]},
+    {m:"Biceps", ex:[
+      {name:"Curl barre droite", sets:[{b:"1×15",n:"1s iso + 2s négative"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Curl incliné 45° supination haltère", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"}]},
+      {name:"Curl incliné 45° marteau haltère", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem"},{b:"1×6",n:"idem"},{b:"1×8",n:"décharge, contraction c. très lente"}], tip:"Étire bien le biceps sur la négative"},
+      {name:"Larry Scott machine supination", sets:[{b:"1×12",n:"2s négative + 1s iso"},{b:"1×10",n:"idem"},{b:"1×8",n:"3s négative + 1s iso"}], tip:"Charge progressive si possible ; privilégie l'étirement et la contraction forte de l'iso"},
+    ]},
+    {m:"Abdos", ex:[
+      {name:"Relevé de jambes", sets:[{b:"3×15",n:"contraction c. lente"}]},
+      {name:"Crunch au banc avec charge", sets:[{b:"1×25",n:"contraction c. lente"},{b:"1×20",n:"idem"},{b:"1×15",n:"idem"}], tip:"Demi-seconde iso en contraction"},
+    ]},
+  ]},
+  {label:"Jour 6", name:"Fessiers · Ischios", groups:[
+    {m:"Fessiers", ex:[
+      {name:"Abducteurs (pré-chauffe)", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]},
+      {name:"Hip thrust", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"}]},
+      {name:"RDL (soulevé jambes tendues)", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem"},{b:"1×8",n:"idem"},{b:"1×6",n:"décharge"}]},
+      {name:"Fente bulgare", sets:[{b:"3×8",n:"contraction c., charge progressive"}]},
+    ]},
+    {m:"Ischios", ex:[
+      {name:"Leg curl assis", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde"},{b:"1×6",n:"même charge, après 15s de repos"}]},
+      {name:"Leg curl allongé", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"décharge"}]},
+    ]},
+  ]},
+  {rest:true, label:"Jour 7", name:"Repos"},
+  {label:"Jour 8", name:"Pecs · Delts · Trapèzes", groups:[
+    {m:"Pecs", ex:[
+      {name:"Écarté poulie ou pec fly (pré-chauffe)", sets:[{b:"1×15",n:"2s négative"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"}], tip:"Juste échauffement"},
+      {name:"Développé haltère couché", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"lourd, contrôlé"}]},
+      {name:"Développé incliné 15° guidé", sets:[{b:"1×10",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×8",n:"lourd"},{b:"1×6",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, 3s négative"}]},
+      {name:"Convergente pectoral incliné 30°", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"}], tip:"Étirement complet sur la négative, contraction max sur la positive en cherchant à rejoindre les deux mains au maximum"},
+    ]},
+    {m:"Deltoïdes", ex:[
+      {name:"Élévation latérale haltère", sets:[{b:"1×15",n:"idem"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"},{b:"1×8",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"Oiseaux haltère", sets:[{b:"3×12",n:"contraction c. lente"}]},
+      {name:"Poulie croisée arrière (deltoïdes postérieurs)", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge progressive"}]},
+    ]},
+    {m:"Trapèzes", ex:[{name:"Shrug haltère sur banc 45°", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]}]},
+  ]},
+  {label:"Jour 9", name:"Quads · Adducteurs · Fessiers", groups:[
+    {m:"Adducteurs", ex:[{name:"Machine adducteurs", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]}]},
+    {m:"Quadriceps", ex:[
+      {name:"Leg extension", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, 1s iso"}]},
+      {name:"Presse pieds parallèles 90°", sets:[{b:"1×12",n:"1s iso"},{b:"1×10",n:"idem"},{b:"1×8",n:"1s iso"},{b:"1×8",n:"même charge (1s iso), après 15s de repos"}]},
+      {name:"Hack squat (amplitude complète)", sets:[{b:"1×15",n:"2s négative"},{b:"1×12",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×8",n:"même charge (3s négative), après 15s de repos"},{b:"1×8",n:"décharge, 4s négative"}], tip:"Étirement complet du quad ; pas de charges extrêmes, juste de quoi étirer au max et enclencher une petite explosivité sur la positive"},
+    ]},
+    {m:"Fessiers", ex:[{name:"RDL (soulevé jambes tendues)", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge progressive"}]}]},
+    {m:"Mollets", ex:[{name:"Mollets debout", sets:[{b:"3×15",n:"amplitude complète, contraction très lente, charge progressive si possible"}]}]},
+  ]},
+  {rest:true, label:"Jour 10", name:"Repos"},
+  {label:"Jour 11", name:"Dos complet · Lombaires", groups:[
+    {m:"Dos", ex:[
+      {name:"Pull-over poulie haute", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Rowing barre Yates (pronation)", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"lourd"}], tip:"Buste pas trop incliné pour éviter de trop solliciter les lombaires"},
+      {name:"Tirage bûcheron convergente (prise neutre)", sets:[{b:"1×10",n:"2s négative"},{b:"1×8",n:"lourd, 2s négative"},{b:"1×8",n:"lourd, 2s négative"},{b:"1×6",n:"décharge, 3s négative"}]},
+      {name:"Soulevé de terre partiel", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem"},{b:"1×6",n:"idem"},{b:"1×6",n:"même charge, après 15s de repos"}], tip:"Charge progressive sans extrême, reste à ~70%, garde toujours 1-2 reps de réserve"},
+    ]},
+    {m:"Largeur", ex:[
+      {name:"Tirage vertical large prise neutre", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Tirage vertical prise serrée", sets:[{b:"1×10",n:"2s négative"},{b:"1×8",n:"idem"},{b:"1×8",n:"lourd, contrôlé"},{b:"1×6",n:"décharge, 3s négative"}], tip:"Demi-seconde iso sur la contraction"},
+    ]},
+    {m:"Lombaires", ex:[{name:"Banc à lombaires", sets:[{b:"1×12",n:"1s iso"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"}]}]},
+  ]},
+  {label:"Jour 12", name:"Triceps · Biceps · Abdos", groups:[
+    {m:"Triceps", ex:[
+      {name:"Extension à la corde", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Développé serré au sol (rack à squat)", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde"},{b:"1×6",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"Biset : barre au front EZ 15° + marteau haltère 15°", sets:[{b:"3×8+8",n:"contraction continue lente (8 barre au front puis 8 marteau)"}]},
+    ]},
+    {m:"Biceps", ex:[
+      {name:"Curl barre droite", sets:[{b:"3×15",n:"1s iso + 2s négative, charge progressive"}]},
+      {name:"Curl incliné 45° supination haltère", sets:[{b:"1×12",n:"contraction c. lente"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"6 à 8 reps même charge, après 15s de repos"}]},
+      {name:"Curl incliné 45° marteau haltère", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem"},{b:"1×6",n:"idem"},{b:"1×8",n:"décharge, contraction c. très lente"}], tip:"Étire bien le biceps sur la négative"},
+      {name:"Larry Scott machine supination", sets:[{b:"1×12",n:"2s négative + 1s iso"},{b:"1×10",n:"idem"},{b:"1×8",n:"3s négative + 1s iso"}], tip:"Charge progressive si possible ; privilégie l'étirement et la contraction forte de l'iso"},
+    ]},
+    {m:"Abdos", ex:[
+      {name:"Relevé de jambes", sets:[{b:"3×15",n:"contraction c. lente"}]},
+      {name:"Crunch au banc avec charge", sets:[{b:"1×25",n:"contraction c. lente"},{b:"1×20",n:"idem"},{b:"1×15",n:"idem"}], tip:"Demi-seconde iso en contraction"},
+    ]},
+  ]},
+  {label:"Jour 13", name:"Fessiers · Ischios", groups:[
+    {m:"Fessiers", ex:[
+      {name:"Abducteurs (pré-chauffe)", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"même charge, après 15s de repos"}]},
+      {name:"Hip thrust", sets:[{b:"1×10",n:"contraction c. lente"},{b:"1×8",n:"idem"},{b:"1×6",n:"lourd, contrôlé"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"RDL (soulevé jambes tendues)", sets:[{b:"1×10",n:"contraction c. lente"},{b:"2×8",n:"idem, charge progressive"}]},
+    ]},
+    {m:"Ischios", ex:[
+      {name:"Leg curl assis", sets:[{b:"1×10",n:"contraction c."},{b:"1×8",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"},{b:"1×6",n:"même charge, après 15s de repos"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"Leg curl allongé", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×8",n:"décharge, 3s négative"}]},
+      {name:"Ischios unilatéral", sets:[{b:"3×8",n:"contraction c., charge progressive"}]},
+    ]},
+  ]},
+  {rest:true, label:"Repos", name:"Récupération — retour séance 1"},
+];
+
 /* ============ PROGRAMMES (le 1er = actuel) ============ */
 const PROGRAMS = [
   {id:"2026-09", label:"Septembre 2026", days:DAYS_2026_09, meals:MEALS_2026_09},
+  {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_09},
 ];
 
 /* ============ Storage (safe) ============ */
