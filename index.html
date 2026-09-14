@@ -611,10 +611,112 @@ const MEALS_2026_06 = [
   {ic:"🌙", t:"Repas 6", n:"Collation du coucher", items:[{q:"25 g",d:"caséine"},{q:"15 g",d:"oléagineux ou beurre de cacahuète"}], supp:["1 gélule ZMA"]},
 ];
 
+/* ============ DATA : ENTRAÎNEMENT — AVRIL 2026 ============ */
+const DAYS_2026_04 = [
+  {label:"Séance 1", name:"Pecs · Abdos", groups:[
+    {m:"Pecs", ex:[
+      {name:"Développé haltère couché", sets:[{b:"1×15",n:"échauffement"},{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge lourde"}]},
+      {name:"Développé haltère 15°", sets:[{b:"1×10",n:"contraction c."},{b:"2×8",n:"idem"}]},
+      {name:"Développé guidé 30°", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×6",n:"décharge, 3s négative"}], tip:"Étirement complet du sous-claviculaire"},
+      {name:"Pec fly", sets:[{b:"3×12",n:"2s négative + 1s iso, charge progressive"}]},
+    ]},
+    {m:"Abdos", ex:[
+      {name:"Relevé de jambes", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"}]},
+      {name:"Crunch au banc", sets:[{b:"1×25",n:"contraction c. lente"},{b:"1×20",n:"idem"},{b:"1×15",n:"idem, charge progressive"}]},
+    ]},
+  ]},
+  {label:"Séance 2", name:"Quads · Mollets · Adducteurs", groups:[
+    {m:"Quadriceps", ex:[
+      {name:"Vélo (échauffement)", sets:[{b:"10 min",n:"échauffement"}]},
+      {name:"Leg extension", sets:[{b:"1×15",n:"1s iso"},{b:"2×12",n:"1s iso"},{b:"1×10",n:"1s iso"},{b:"1×8",n:"décharge, 2s iso par rep"}]},
+      {name:"Presse", sets:[{b:"3×12",n:"1s iso, charge progressive"},{b:"Dégr.",n:"8 + 8 + 10 reps (1s iso · 1s iso · 3s négative), amplitude complète"}], tip:"Étirement du quadriceps"},
+      {name:"Squat guidé (pieds largeur épaules, amplitude complète)", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"2s négative"},{b:"1×8",n:"charge lourde, contrôlée"}]},
+    ]},
+    {m:"Mollets", ex:[
+      {name:"Mollets debout", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"décharge"}]},
+      {name:"Mollets assis", sets:[{b:"3×12",n:"contraction c. lente"}]},
+    ]},
+    {m:"Adducteurs", ex:[
+      {name:"Machine adducteurs", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"décharge"}]},
+    ]},
+  ]},
+  {label:"Séance 3", name:"Triceps · Biceps", groups:[
+    {m:"Triceps", ex:[
+      {name:"Extension poulie corde", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"décharge, contraction c."}]},
+      {name:"Développé serré (libre ou guidé)", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem"},{b:"1×8",n:"décharge"}]},
+      {name:"Extension haltère à deux mains", sets:[{b:"2×10",n:"contraction c. lente"},{b:"1×8",n:"charge lourde, contrôlée"}]},
+    ]},
+    {m:"Biceps", ex:[
+      {name:"Larry Scott machine (pré-chauffe)", sets:[{b:"3×15",n:"2s négative + 1s iso, charge progressive"}], tip:"Repos classique 1 min 30"},
+      {name:"Curl barre droite ou EZ", sets:[{b:"1×15",n:"2s négative"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"décharge, 3s négative"}], tip:"Va bien chercher au menton"},
+      {name:"Curl assis 60° supination", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge progressive"}]},
+      {name:"Curl haltère marteau", sets:[{b:"1×10",n:"contraction c."},{b:"2×8",n:"charge progressive mais contrôlée"}]},
+    ]},
+  ]},
+  {rest:true, label:"Repos", name:"Récupération"},
+  {label:"Séance 4", name:"Dos (épaisseur) · Lombaires · Biceps", groups:[
+    {m:"Dos (épaisseur)", ex:[
+      {name:"Pull-over poulie haute (pré-chauffe)", sets:[{b:"3×15",n:"contraction c. lente, charge progressive"}]},
+      {name:"T-barre prise neutre", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"},{b:"1×6",n:"décharge"}]},
+      {name:"Soulevé de terre complet", sets:[{b:"1×10",n:"contraction c."},{b:"2×8",n:"contraction c., charge lourde, contrôlée"}], tip:"Descends en dessous des genoux"},
+      {name:"Tirage horizontal prise neutre large", sets:[{b:"1×12",n:"2s négative"},{b:"2×10",n:"2s négative"}]},
+    ]},
+    {m:"Lombaires", ex:[
+      {name:"Banc à lombaires", sets:[{b:"1×15",n:"1s iso"},{b:"1×12",n:"1s iso"},{b:"1×10",n:"1s iso, avec charge"}]},
+    ]},
+    {m:"Biceps", ex:[
+      {name:"Curl poulie basse barre droite", sets:[{b:"1×15",n:"contraction c. lente"},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×10",n:"décharge"}]},
+    ]},
+  ]},
+  {label:"Séance 5", name:"Deltoïdes · Trapèzes · Abdos", groups:[
+    {m:"Deltoïdes", ex:[
+      {name:"Élévation latérale haltère", sets:[{b:"1×15",n:"contraction c. lente"},{b:"2×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×10",n:"décharge"}]},
+      {name:"Développé militaire haltère", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"},{b:"1×8",n:"décharge, contraction c. lente"}]},
+      {name:"Élévation latérale buste penché (sur Larry Scott)", sets:[{b:"3×12",n:"contraction c. lente"}]},
+      {name:"Vis-à-vis croisé arrière (deltoïdes postérieurs)", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem"},{b:"1×8",n:"décharge"}]},
+    ]},
+    {m:"Trapèzes", ex:[
+      {name:"Shrug haltère semi-supination", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"}]},
+    ]},
+    {m:"Abdos", ex:[
+      {name:"Relevé de jambes", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+      {name:"Crunch sur banc", sets:[{b:"1×30",n:"contraction c. lente"},{b:"1×25",n:"idem"},{b:"1×20",n:"idem"}]},
+    ]},
+  ]},
+  {label:"Séance 6", name:"Fessiers · Ischios · Abducteurs", groups:[
+    {m:"Fessiers", ex:[
+      {name:"Hip thrust", sets:[{b:"1×15",n:"échauffement"},{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"charge lourde, contrôlée"}]},
+      {name:"Fente bulgare", sets:[{b:"1×12",n:"contraction c."},{b:"1×10",n:"idem"},{b:"1×8",n:"idem, charge lourde, contrôlée"}]},
+      {name:"RDL (soulevé jambes tendues)", sets:[{b:"2×12",n:"contraction c. lente"},{b:"1×10",n:"idem, charge progressive"}]},
+    ]},
+    {m:"Ischios", ex:[
+      {name:"Leg curl allongé", sets:[{b:"1×12",n:"2s négative"},{b:"1×10",n:"2s négative"},{b:"1×8",n:"2s négative"},{b:"1×8",n:"décharge, 3s négative"}]},
+      {name:"Leg curl debout unilatéral", sets:[{b:"2×12",n:"contraction c. lente"},{b:"1×10",n:"idem"}]},
+    ]},
+    {m:"Abducteurs", ex:[
+      {name:"Machine abducteurs", sets:[{b:"1×15",n:"contraction c."},{b:"1×12",n:"idem"},{b:"1×10",n:"idem, charge progressive"}]},
+    ]},
+  ]},
+  {rest:true, label:"Repos", name:"Récupération — retour séance 1"},
+];
+
+/* ============ DATA : DIÈTE — AVRIL 2026 ============ */
+const MEALS_2026_04 = [
+  {ic:"☀️", t:"Réveil", n:"À jeun", items:[{q:"5 g",d:"EAA"},{q:"",d:"Jus de citron pressé"}]},
+  {ic:"🥣", t:"Repas 1", n:"Petit-déjeuner", items:[{q:"50 g",d:"crème de riz"},{q:"3",d:"blancs d'œufs"},{q:"1",d:"œuf entier"},{q:"10 g",d:"miel d'acacia"},{q:"50 g",d:"fruits rouges"}], supp:["1 oméga 3","1 multivitamine","1 vit. K2 D3","3 g glutamine","1 magnésium bisglycinate","1 astaxanthine","1 berbérine"]},
+  {ic:"🥛", t:"Repas 2", n:"Collation", items:[{q:"30 g",d:"isolate"},{q:"1",d:"banane"},{q:"10 g",d:"amandes"}]},
+  {ic:"🍗", t:"Repas 3", n:"Midi", items:[{q:"150 g",d:"riz basmati cuit"},{q:"140 g",d:"blanc de poulet cru"},{q:"50 g",d:"légumes verts"},{q:"10 g",d:"huile d'olive"}], supp:["3 g glutamine","1 oméga 3"]},
+  {ic:"🥔", t:"Repas 4", n:"Collation après-midi", items:[{q:"4",d:"blancs d'œufs"},{q:"1",d:"banane"},{q:"10 g",d:"purée d'amande"}], supp:["1 oméga 3"]},
+  {ic:"⚡", t:"Autour de la séance", n:"Pré / Intra / Post", items:[{q:"Pré",d:"20 g dextrine cyclique + 1 électrolyte (30 min avant)"},{q:"Intra",d:"10 g EAA"},{q:"Post",d:"40 g isolate + 5 g glutamine + 1 g vitamine C"}]},
+  {ic:"🐟", t:"Repas 5", n:"Soir", items:[{q:"180 g",d:"poisson blanc ou 150 g blanc de poulet"},{q:"150 g",d:"patate douce cuite"},{q:"60 g",d:"brocoli / haricots verts"},{q:"10 g",d:"huile de lin"}], supp:["1 oméga 3","1 astaxanthine","1 magnésium bisglycinate"]},
+  {ic:"🌙", t:"Repas 6", n:"Collation du coucher", items:[{q:"25 g",d:"caséine"},{q:"15 g",d:"oléagineux ou beurre de cacahuète"}], supp:["1 gélule ZMA","5 g glutamine"]},
+];
+
 /* ============ PROGRAMMES (le 1er = actuel) ============ */
 const PROGRAMS = [
   {id:"2026-09", label:"Septembre 2026", days:DAYS_2026_09, meals:MEALS_2026_09},
   {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_06},
+  {id:"2026-04", label:"Avril 2026", days:DAYS_2026_04, meals:MEALS_2026_04},
 ];
 
 /* ============ Storage (safe) ============ */
