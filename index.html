@@ -599,10 +599,22 @@ const DAYS_2026_06 = [
   {rest:true, label:"Repos", name:"Récupération — retour séance 1"},
 ];
 
+/* ============ DATA : DIÈTE — JUIN 2026 ============ */
+const MEALS_2026_06 = [
+  {ic:"☀️", t:"Réveil", n:"À jeun", items:[{q:"5 g",d:"EAA"},{q:"",d:"Jus de citron pressé"}]},
+  {ic:"🥣", t:"Repas 1", n:"Petit-déjeuner", items:[{q:"60 g",d:"crème de riz"},{q:"3",d:"blancs d'œufs"},{q:"1",d:"œuf entier"},{q:"10 g",d:"miel d'acacia"},{q:"50 g",d:"fruits rouges"}], supp:["1 oméga 3","1 multivitamine","1 vit. K2 D3","3 g glutamine","1 magnésium bisglycinate","1 astaxanthine","1 berbérine"]},
+  {ic:"🥛", t:"Repas 2", n:"Collation", items:[{q:"30 g",d:"isolate"},{q:"1",d:"banane"},{q:"10 g",d:"amandes"}]},
+  {ic:"🍗", t:"Repas 3", n:"Midi", items:[{q:"200 g",d:"riz basmati cuit"},{q:"140 g",d:"blanc de poulet cru"},{q:"50 g",d:"légumes verts"},{q:"10 g",d:"huile d'olive"}], supp:["1 oméga 3"]},
+  {ic:"🥔", t:"Repas 4", n:"Collation après-midi", items:[{q:"4",d:"blancs d'œufs"},{q:"1",d:"banane"},{q:"20 g",d:"purée d'amande"}], supp:["1 oméga 3"]},
+  {ic:"⚡", t:"Autour de la séance", n:"Pré / Intra / Post", items:[{q:"Pré",d:"20 g dextrine cyclique + 1 électrolyte (30 min avant)"},{q:"Intra",d:"10 g EAA"},{q:"Post",d:"40 g isolate + 50 g crème de riz + 1 g vitamine C"}]},
+  {ic:"🐟", t:"Repas 5", n:"Soir", items:[{q:"180 g",d:"poisson blanc ou 150 g blanc de poulet"},{q:"220 g",d:"patate douce cuite"},{q:"60 g",d:"brocoli / haricots verts"},{q:"10 g",d:"huile de lin"}], supp:["1 oméga 3","1 astaxanthine","1 magnésium bisglycinate"]},
+  {ic:"🌙", t:"Repas 6", n:"Collation du coucher", items:[{q:"25 g",d:"caséine"},{q:"15 g",d:"oléagineux ou beurre de cacahuète"}], supp:["1 gélule ZMA"]},
+];
+
 /* ============ PROGRAMMES (le 1er = actuel) ============ */
 const PROGRAMS = [
   {id:"2026-09", label:"Septembre 2026", days:DAYS_2026_09, meals:MEALS_2026_09},
-  {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_09},
+  {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_06},
 ];
 
 /* ============ Storage (safe) ============ */
