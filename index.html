@@ -68,6 +68,17 @@
     padding:6px 11px;border-radius:10px;background:var(--bg-soft);border:1px solid var(--line-2)}
   .wcard.cut .wc-delta{color:var(--blue)}
   .wcard.bulk .wc-delta{color:var(--accent-2)}
+  .wc-note{font-size:11.5px;color:var(--txt-dim);margin-top:11px;line-height:1.45;font-style:italic;border-top:1px solid var(--line);padding-top:10px}
+
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .mc-top{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+  .mc-kcal{font-size:22px;font-weight:850;letter-spacing:-.5px}
+  .mc-sub{font-size:12px;color:var(--txt-dim);font-weight:700}
+  .mc-macros{display:flex;gap:8px}
+  .mc-m{flex:1;background:var(--card-2);border:1px solid var(--line);border-radius:11px;padding:10px 6px;text-align:center;display:flex;flex-direction:column;gap:3px}
+  .mc-v{font-size:16px;font-weight:850;color:var(--accent-2);font-variant-numeric:tabular-nums}
+  .mc-l{font-size:9.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--txt-mute);font-weight:850}
+  .mc-note{font-size:11px;color:var(--txt-mute);margin-top:11px;line-height:1.45;font-style:italic}
   .banner b{color:var(--txt)} .banner .abbr{color:var(--txt);font-weight:600}
 
   /* ---------- Day card ---------- */
@@ -295,6 +306,7 @@
 <!-- DIÈTE -->
 <section id="diet" class="view">
   <div class="wrap">
+    <div id="macro-card"></div>
     <div class="diet-top">
       <div class="ring" id="diet-ring"></div>
       <div class="dt-txt"><b id="diet-count">0/0 repas</b><p>pris aujourd'hui</p></div>
@@ -1133,11 +1145,11 @@ const MEALS_2025_09 = [
 
 /* ============ PROGRAMMES (le 1er = actuel) ============ */
 const PROGRAMS = [
-  {id:"2026-09", label:"Septembre 2026", days:DAYS_2026_09, meals:MEALS_2026_09, weight:{start:{d:"06/09",kg:77},end:{d:"12/09",kg:75.3},ongoing:true}},
-  {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_06, weight:{start:{d:"03/06",kg:67.15},end:{d:"24/07",kg:71.7}}},
-  {id:"2026-04", label:"Avril 2026", days:DAYS_2026_04, meals:MEALS_2026_04, weight:{start:{d:"27/04",kg:63.8},end:{d:"02/06",kg:67.6}}},
-  {id:"2026-01", label:"Janvier 2026", days:DAYS_2026_01, meals:MEALS_2026_04, weight:{start:{d:"17/01",kg:72.6},end:{d:"10/04",kg:65.7}}},
-  {id:"2025-09", label:"Septembre 2025", days:DAYS_2025_09, meals:MEALS_2025_09, weight:{start:{d:"06/10",kg:78.1},end:{d:"26/12",kg:73.2}}},
+  {id:"2026-09", label:"Septembre 2026", days:DAYS_2026_09, meals:MEALS_2026_09, macros:{kcal:2150,p:185,c:250,f:48}, weight:{start:{d:"06/09",kg:77},end:{d:"12/09",kg:75.3},ongoing:true,note:"Départ à 77 kg après 6 semaines en Chine / Japon (sans diète, entraînement maintenu) — la sèche ramène le poids vers le bas."}},
+  {id:"2026-06", label:"Juin 2026", days:DAYS_2026_06, meals:MEALS_2026_06, macros:{kcal:2270,p:180,c:277,f:49}, weight:{start:{d:"03/06",kg:67.15},end:{d:"24/07",kg:71.7}}},
+  {id:"2026-04", label:"Avril 2026", days:DAYS_2026_04, meals:MEALS_2026_04, macros:{kcal:1900,p:180,c:200,f:43}, weight:{start:{d:"27/04",kg:63.8},end:{d:"02/06",kg:67.6}}},
+  {id:"2026-01", label:"Janvier 2026", days:DAYS_2026_01, meals:MEALS_2026_04, macros:{kcal:1900,p:180,c:200,f:43}, weight:{start:{d:"17/01",kg:72.6},end:{d:"10/04",kg:65.7}}},
+  {id:"2025-09", label:"Septembre 2025", days:DAYS_2025_09, meals:MEALS_2025_09, macros:{kcal:1850,p:172,c:194,f:43}, weight:{start:{d:"06/10",kg:78.1},end:{d:"26/12",kg:73.2}}},
 ];
 
 /* ============ Storage (safe) ============ */
@@ -1198,7 +1210,20 @@ function renderWeight(){
       <div class="wc-arrow">→</div>
       <div class="wc-pt"><span class="wc-lbl">Fin${w.ongoing?" (à ce jour)":""}</span><span class="wc-kg">${fmtKg(w.end.kg)} kg</span><span class="wc-d">${w.end.d}</span></div>
       <div class="wc-delta">${delta>0?"+":""}${fmtKg(delta)} kg</div>
-    </div>`;
+    </div>${w.note?`<div class="wc-note">${w.note}</div>`:""}`;
+}
+function renderMacros(){
+  const card=$("#macro-card"); if(!card) return;
+  const p=PROGRAMS.find(x=>x.id===PROG), m=p&&p.macros;
+  if(!m){ card.className=""; card.innerHTML=""; return; }
+  card.className="mcard";
+  card.innerHTML=`<div class="mc-top"><span class="mc-kcal">≈ ${m.kcal.toLocaleString("fr-FR")} kcal</span><span class="mc-sub">/ jour (estimation)</span></div>
+    <div class="mc-macros">
+      <div class="mc-m"><span class="mc-v">${m.p} g</span><span class="mc-l">Protéines</span></div>
+      <div class="mc-m"><span class="mc-v">${m.c} g</span><span class="mc-l">Glucides</span></div>
+      <div class="mc-m"><span class="mc-v">${m.f} g</span><span class="mc-l">Lipides</span></div>
+    </div>
+    <div class="mc-note">Estimation à partir des portions — valeurs indicatives, pas la cible officielle du coach.</div>`;
 }
 function fmtDate(iso){try{return new Date(iso+"T00:00").toLocaleDateString("fr-FR",{weekday:"short",day:"numeric",month:"short"});}catch(e){return iso;}}
 
@@ -1371,6 +1396,7 @@ function updateDietTop(){
   $("#diet-ring").innerHTML=miniRing(done,total);
 }
 function renderMeals(){
+  renderMacros();
   ensureDietDay();
   const root=$("#meals"); root.innerHTML="";
   MEALS.forEach((m,i)=>{
